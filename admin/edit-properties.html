@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZVDLT85L8B"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-ZVDLT85L8B");
+    </script>
+    <script>
+      if (
+        localStorage.getItem("loggedInUser") === null &&
+        sessionStorage.getItem("loggedInUser") === null
+      ) {
+        sessionStorage.removeItem("loggedInUser");
+        localStorage.removeItem("loggedInUser");
+        window.location.href = "/";
+      } else {
+        let userData = null;
+        if (sessionStorage.getItem("loggedInUser") !== null) {
+          userData = JSON.parse(sessionStorage.getItem("loggedInUser"));
+        } else {
+          userData = JSON.parse(localStorage.getItem("loggedInUser"));
+        }
+
+        if (!userData.user.token) {
+          sessionStorage.removeItem("loggedInUser");
+          localStorage.removeItem("loggedInUser");
+          window.location.href = "/";
+        }
+      }
+    </script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Edit Property</title>
+
+    <!-- ogp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Zilahouse" />
+    <meta
+      property="og:description"
+      content="Zilahouse provides a common platform for property buyers & sellers to locate properties of interest in India."
+    />
+    <meta property="og:site_name" content="ZILAHOUSE" />
+    <meta property="og:url" content="https://zilahouse.com" />
+    <meta
+      property="og:image"
+      content="https://zilahouse.com/assets/images/logos/zilahouseOGP.png"
+    />
+
+    <!--Favicon-->
+    <link rel="icon" href="/assets/images/favicon.png" type="image/x-icon" />
+
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1175006767696756"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="../assets/css/animate.min.css" />
+
+    <link rel="stylesheet" href="../assets/css/mainStyle.css" />
+    <link rel="stylesheet" href="../assets/css/headerStyle.css" />
+    <link rel="stylesheet" href="../assets/css/signInSignUpStyle.css" />
+    <link rel="stylesheet" href="../assets/css/postFreeAdStyle.css" />
+    <link rel="stylesheet" href="../assets/css/propertyStyle.css" />
+    <link rel="stylesheet" href="../assets/css/footerStyle.css" />
+
+    <!-- Include Handlebars -->
+    <script src="../assets/js/vendor/handlebars.js"></script>
+    <script src="../assets/js/main.js" type="module"></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header
+      id="header-content"
+      class="container-fluid navbar navbar-expand-lg"
+    ></header>
+
+    <!-- Post free ad cont -->
+    <div class="pfa-section container-fluid">
+      <div class="pfa-cont container">
+        <!-- Steps Section -->
+        <div class="ad-steps">
+          <div class="ad-step-box pr-2 active">
+            <div class="ad-step-indicator">
+              <span class="ad-step-number">1</span>
+              <ion-icon name="checkmark-done"></ion-icon>
+            </div>
+            <div class="ad-step-name">Edit Details</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="ad-step-box px-2">
+            <div class="ad-step-indicator">
+              <span class="ad-step-number">2</span>
+              <ion-icon name="checkmark-done"></ion-icon>
+            </div>
+            <div class="ad-step-name">Edit Address</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="ad-step-box pl-2">
+            <div class="ad-step-indicator">
+              <span class="ad-step-number">3</span>
+              <ion-icon name="checkmark-done"></ion-icon>
+            </div>
+            <div class="ad-step-name">Other Edits</div>
+          </div>
+        </div>
+
+        <!-- Form Container-->
+        <div class="ad-form-cont">
+          <div class="form-message"></div>
+
+          <!-- Details form -->
+          <form
+            class="form details-form"
+            enctype="multipart/form-data"
+            onsubmit="event.preventDefault();"
+          >
+            <!-- Purpose -->
+            <div class="form-group form-field-cont">
+              <label class="mb-0 form-field-name">
+                <span class="text-danger">*</span>
+                What you want?
+              </label>
+              <div class="form-check-inline-cont">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="estateName"
+                      id="Sell"
+                      value="Sale"
+                      required
+                    />
+                    <label for="Sell">Sell</label>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="estateName"
+                      id="Rent"
+                      value="Rent"
+                    />
+                    <label for="Rent">Rent</label>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="estateName"
+                      id="Lease"
+                      value="Lease"
+                    />
+                    <label for="Lease">Lease</label>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="estateName"
+                      id="PG"
+                      value="PG"
+                    />
+                    <label for="PG">PG</label>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Property Type -->
+            <div class="form-group form-field-cont">
+              <label class="mb-0 form-field-name">
+                <span class="text-danger">*</span>
+                Property Type
+              </label>
+              <div class="form-check-inline-cont">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="estateType"
+                      id="Apartment-Flat"
+                      value="Apartment Flat"
+                    />
+                    <label for="Apartment-Flat">Apartment Flat</label>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="estateType"
+                      id="Independent-Floor"
+                      value="Independent Floor"
+                    />
+                    <label for="Independent-Floor">Independent Floor</label>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input dependent-PG"
+                      name="estateType"
+                      id="Plot"
+                      value="Plot"
+                    />
+                    <label for="Plot">Plot</label>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input dependent-PG"
+                      name="estateType"
+                      id="Farm-House"
+                      value="Farm House"
+                    />
+                    <label for="Farm-House">Farm House</label>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="estateType"
+                      id="Independent-House"
+                      value="Independent House"
+                      required
+                    />
+                    <label for="Independent-House">Independent House</label>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="estateType"
+                      id="Hostel"
+                      value="Hostel"
+                      required
+                    />
+                    <label for="Hostel">Hostel</label>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="estateType"
+                      id="School"
+                      value="School"
+                      required
+                    />
+                    <label for="School">School</label>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="estateType"
+                      id="College"
+                      value="College"
+                      required
+                    />
+                    <label for="College">College</label>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="estateType"
+                      id="Hotel"
+                      value="Hotel"
+                      required
+                    />
+                    <label for="Hotel">Hotel</label>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="estateType"
+                      id="Office"
+                      value="Office"
+                      required
+                    />
+                    <label for="Office">Office</label>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="estateType"
+                      id="Penthouse"
+                      value="Penthouse"
+                      required
+                    />
+                    <label for="Penthouse">Penthouse</label>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="estateType"
+                      id="Shop"
+                      value="Shop"
+                      required
+                    />
+                    <label for="Shop">Shop</label>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="estateType"
+                      id="Villa"
+                      value="Villa"
+                      required
+                    />
+                    <label for="Villa">Villa</label>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="estateType"
+                      id="Commercial-Building"
+                      value="Commercial Building"
+                      required
+                    />
+                    <label for="Commercial Building">Commercial Building</label>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="estateType"
+                      id="Resort"
+                      value="Resort"
+                      required
+                    />
+                    <label for="Resort">Resort</label>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="estateType"
+                      id="Mall"
+                      value="Mall"
+                      required
+                    />
+                    <label for="Mall">Mall</label>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="estateType"
+                      id="Hospital"
+                      value="Hospital"
+                      required
+                    />
+                    <label for="Hospital">Hospital</label>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Transaction Type -->
+            <div class="form-group form-field-cont dependent-r-l-pg">
+              <label class="mb-0 form-field-name">
+                <span class="text-danger">*</span>
+                Transaction Type
+              </label>
+              <div class="form-check-inline-cont">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="transactionType"
+                      id="New-Booking"
+                      value="New Booking"
+                    />
+                    <label for="New-Booking">New Booking</label>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="transactionType"
+                      id="Resale"
+                      value="Resale"
+                      required
+                    />
+                    <label for="Resale">Resale</label>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Features -->
+            <fieldset>
+              <legend>Features</legend>
+              <!-- Construction Status -->
+              <div class="form-group form-field-cont dependent-Plot">
+                <label class="mb-0 form-field-name">
+                  <span class="text-danger">*</span>
+                  Construction Status
+                </label>
+                <div class="form-check-inline-cont">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="constructionStatus"
+                        id="Ready-to-Move"
+                        value="Ready to Move"
+                      />
+                      <label for="Ready-to-Move">Ready to Move</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="constructionStatus"
+                        id="Under-Construction"
+                        value="Under Construction"
+                        required
+                      />
+                      <label for="Under-Construction">Under Construction</label>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!-- BHK -->
+              <div class="form-group form-field-cont dependent-p-fh">
+                <label class="mb-0 form-field-name">
+                  <span class="text-danger">*</span>
+                  BHK?
+                </label>
+                <div class="form-check-inline-cont">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBedrooms"
+                        id="1RK"
+                        value="1RK"
+                      />
+                      <label for="1RK">1RK</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBedrooms"
+                        id="Studio"
+                        value="Studio"
+                      />
+                      <label for="Studio">Studio</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBedrooms"
+                        id="1BHK"
+                        value="1BHK"
+                      />
+                      <label for="1BHK">1BHK</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBedrooms"
+                        id="2BHK"
+                        value="2BHK"
+                      />
+                      <label for="2BHK">2BHK</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBedrooms"
+                        id="3BHK"
+                        value="3BHK"
+                      />
+                      <label for="3BHK">3BHK</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBedrooms"
+                        id="4BHK"
+                        value="4BHK"
+                      />
+                      <label for="4BHK">4BHK</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBedrooms"
+                        id="5BHK"
+                        value="5BHK"
+                      />
+                      <label for="5BHK">5BHK</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBedrooms"
+                        id="6BHK"
+                        value="6BHK"
+                      />
+                      <label for="6BHK">6BHK</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBedrooms"
+                        id="7BHK+"
+                        value="7BHK+"
+                      />
+                      <label for="7BHK+">7BHK+</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBedrooms"
+                        id="30Rooms+"
+                        value="30Rooms+"
+                        required
+                      />
+                      <label for="30Rooms+">30Rooms+</label>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!-- Balcony -->
+              <div class="form-group form-field-cont dependent-p-fh">
+                <label class="mb-0 form-field-name">
+                  <span class="text-danger">*</span>
+                  No. of Balconies
+                </label>
+                <div class="form-check-inline-cont">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBalconies"
+                        id="No-Balcony"
+                        value="0"
+                      />
+                      <label for="No-Balcony">None</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBalconies"
+                        id="1Balcony"
+                        value="1"
+                      />
+                      <label for="1Balcony">1</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBalconies"
+                        id="2Balcony"
+                        value="2"
+                      />
+                      <label for="2Balcony">2</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBalconies"
+                        id="3Balcony"
+                        value="3"
+                      />
+                      <label for="3Balcony">3</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBalconies"
+                        id="4Balcony"
+                        value="4"
+                      />
+                      <label for="4Balcony">4</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBalconies"
+                        id="5Balcony+"
+                        value="5+"
+                        required
+                      />
+                      <label for="5Balcony+">5+</label>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!-- Bathroom -->
+              <div class="form-group form-field-cont dependent-p-fh">
+                <label class="mb-0 form-field-name">
+                  <span class="text-danger">*</span>
+                  No. of Bathrooms
+                </label>
+                <div class="form-check-inline-cont">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBathrooms"
+                        id="1Bathroom"
+                        value="1"
+                      />
+                      <label for="1Bathroom">1</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBathrooms"
+                        id="2Bathroom"
+                        value="2"
+                      />
+                      <label for="2Bathroom">2</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBathrooms"
+                        id="3Bathroom"
+                        value="3"
+                      />
+                      <label for="3Bathroom">3</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBathrooms"
+                        id="4Bathroom"
+                        value="4"
+                      />
+                      <label for="4Bathroom">4</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfBathrooms"
+                        id="5Bathroom+"
+                        value="5+"
+                        required
+                      />
+                      <label for="5Bathroom+">5+</label>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!-- Furnishing Status -->
+              <div class="form-group form-field-cont dependent-p-fh">
+                <label class="mb-0 form-field-name">
+                  <span class="text-danger">*</span>
+                  Furnishing Status
+                </label>
+                <div class="form-check-inline-cont">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="furnish"
+                        id="Fully-Furnished"
+                        value="Fully Furnished"
+                      />
+                      <label for="Fully-Furnished">Fully Furnished</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="furnish"
+                        id="Semi-Furnished"
+                        value="Semi Furnished"
+                      />
+                      <label for="Semi-Furnished">Semi Furnished</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="furnish"
+                        id="Un-furnished"
+                        value="Un-furnished"
+                        required
+                      />
+                      <label for="Un-furnished">Un-furnished</label>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!-- Floor -->
+              <div class="form-group form-field-cont dependent-p-fh">
+                <label class="mb-0 form-field-name">
+                  <span class="text-danger">*</span>
+                  Floor Details
+                </label>
+                <div class="form-check-inline-cont">
+                  <input
+                    type="number"
+                    min="0"
+                    class="form-control"
+                    placeholder="Floor Number"
+                    name="floorAt"
+                    id="floor-number"
+                    autocomplete="off"
+                    required
+                  />
+                  <span class="mx-3">out of</span>
+                  <input
+                    type="number"
+                    min="0"
+                    class="form-control"
+                    placeholder="Total Floors"
+                    name="totalFloors"
+                    id="total-Floors"
+                    autocomplete="off"
+                    required
+                  />
+                </div>
+              </div>
+              <!-- Lift -->
+              <div class="form-group form-field-cont dependent-p-fh">
+                <label class="mb-0 form-field-name">
+                  <span class="text-danger">*</span>
+                  Lift
+                </label>
+                <div class="form-check-inline-cont">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="lift"
+                        id="Available"
+                        value="Available"
+                      />
+                      <label for="Available">Available</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="lift"
+                        id="Not-Available"
+                        value="Not Available"
+                        required
+                      />
+                      <label for="Not-Available">Not Available</label>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!-- Parking -->
+              <div class="form-group form-field-cont dependent-p-fh">
+                <label class="mb-0 form-field-name">Parking</label>
+                <div class="form-check-inline-cont">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfReserveParking"
+                        id="No-Parkings"
+                        value="None"
+                      />
+                      <label for="No-Parkings">None</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfReserveParking"
+                        id="1Parkings"
+                        value="1"
+                      />
+                      <label for="1Parkings">1</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfReserveParking"
+                        id="2Parkings"
+                        value="2"
+                      />
+                      <label for="2Parkings">2</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfReserveParking"
+                        id="3Parkings"
+                        value="3"
+                      />
+                      <label for="3Parkings">3</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="numOfReserveParking"
+                        id="4Parkings"
+                        value="4+"
+                      />
+                      <label for="4Parkings">4+</label>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!-- Facing -->
+              <div class="form-group form-field-cont">
+                <label class="mb-0 form-field-name">Facing</label>
+                <div class="form-check-inline-cont">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="facing"
+                        id="North-Facing"
+                        value="North-Facing"
+                      />
+                      <label for="North-Facing">North-Facing</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="facing"
+                        id="East-Facing"
+                        value="East-Facing"
+                      />
+                      <label for="East-Facing">East-Facing</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="facing"
+                        id="South-Facing"
+                        value="South-Facing"
+                      />
+                      <label for="South-Facing">South-Facing</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="facing"
+                        id="West-Facing"
+                        value="West-Facing"
+                      />
+                      <label for="West-Facing">West-Facing</label>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- Area And Dimensions -->
+            <fieldset>
+              <legend>Area and Dimensions</legend>
+              <!-- Super Area -->
+              <!-- OLD div class="form-group form-field-cont dependent-p-fh-ih"-->
+              <div class="form-group form-field-cont">
+                <label class="mb-0 form-field-name">
+                  <span class="text-danger">*</span>
+                  Super Area
+                </label>
+                <div class="form-check-inline-cont">
+                  <input
+                    type="number"
+                    min="0"
+                    class="form-control"
+                    placeholder="Super Area"
+                    name="superArea"
+                    id="super-area"
+                    autocomplete="off"
+                    required
+                  />
+                  <span class="mx-3">in</span>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="superAreaUnit"
+                        id="Super-Square-Feet"
+                        value="Sqft."
+                      />
+                      <label for="Super-Square-Feet">Square Feet</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="superAreaUnit"
+                        id="Super-Square-Yard"
+                        value="Sqyd."
+                      />
+                      <label for="Super-Square-Yard">Square Yard</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="superAreaUnit"
+                        id="Super-Square-Meter"
+                        value="Sqmt."
+                        required
+                      />
+                      <label for="Super-Square-Meter">Square Meter</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="superAreaUnit"
+                        id="Super-Acre"
+                        value="Acre."
+                        required
+                      />
+                      <label for="Super-Acre">Acre</label>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!-- Carpet Area -->
+              <!-- OLD div class="form-group form-field-cont dependent-p-fh-ih"-->
+              <div class="form-group form-field-cont">
+                <label class="mb-0 form-field-name">
+                  <span class="text-danger">*</span>
+                  Carpet Area
+                </label>
+                <div class="form-check-inline-cont">
+                  <input
+                    type="number"
+                    min="0"
+                    class="form-control"
+                    placeholder="Carpet Area"
+                    name="carpetArea"
+                    id="carpet-area"
+                    autocomplete="off"
+                    required
+                  />
+                  <span class="mx-3">in</span>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="carpetAreaUnit"
+                        id="Carpet-Square-Feet"
+                        value="Sqft."
+                      />
+                      <label for="Carpet-Square-Feet">Square Feet</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="carpetAreaUnit"
+                        id="Carpet-Square-Yard"
+                        value="Sqyd."
+                      />
+                      <label for="Carpet-Square-Yard">Square Yard</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="carpetAreaUnit"
+                        id="Carpet-Square-Meter"
+                        value="Sqmt."
+                        required
+                      />
+                      <label for="Carpet-Square-Meter">Square Meter</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="carpetAreaUnit"
+                        id="Carpet-Acre"
+                        value="Acre."
+                        required
+                      />
+                      <label for="Carpet-Acre">Acre</label>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!-- Dimensions -->
+              <div class="form-group form-field-cont dependent-af-if">
+                <label class="mb-0 form-field-name">
+                  <span class="text-danger">*</span>
+                  Dimensions
+                </label>
+                <div class="form-check-inline-cont">
+                  <input
+                    type="number"
+                    min="0"
+                    class="form-control"
+                    placeholder="Length"
+                    name="dimLength"
+                    id="dim-length"
+                    autocomplete="off"
+                  />
+                  <input
+                    type="number"
+                    min="0"
+                    class="form-control"
+                    placeholder="Width"
+                    name="dimWidth"
+                    id="dim-width"
+                    autocomplete="off"
+                  />
+                  <span class="mx-3">in</span>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="dimAreaUnit"
+                        id="Dim-Square-Feet"
+                        value="Sqft."
+                      />
+                      <label for="Dim-Square-Feet">Feet</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="dimAreaUnit"
+                        id="Dim-Square-Yard"
+                        value="Sqyd."
+                      />
+                      <label for="Dim-Square-Yard">Yard</label>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="dimAreaUnit"
+                        id="Dim-Square-Meter"
+                        value="Sqmt."
+                      />
+                      <label for="Dim-Square-Meter">Meter</label>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- Charges -->
+            <fieldset class="charges-fieldset">
+              <legend>
+                Charges &nbsp;
+
+                <label class="form-check-label">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    name="currency"
+                    id="currency-INR"
+                    value="INR"
+                  />
+                  <label
+                    for="currency-INR"
+                    style="padding: 1px 6px !important; font-size: large"
+                  >
+                    INR ₹
+                  </label>
+                </label>
+                <label class="form-check-label">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    name="currency"
+                    id="currency-Dollar"
+                    value="DOLLAR"
+                    required
+                  />
+                  <label
+                    for="currency-Dollar"
+                    style="padding: 1px 6px !important; font-size: large"
+                  >
+                    Dollar $
+                  </label>
+                </label>
+                <span class="readableAmount ml-2"></span>
+              </legend>
+              <div class="form-row">
+                <!-- Selling Price -->
+                <div
+                  class="form-group form-field-cont col-xl-6 dependent-r-l-pg"
+                >
+                  <label class="mb-0 form-field-name">
+                    <span class="text-danger">*</span>
+                    Selling Price
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    class="form-control amount-box"
+                    placeholder="Selling Price"
+                    name="cost"
+                    id="Selling-Price"
+                    required
+                  />
+                  <span class="readableAmount ml-2"></span>
+                </div>
+                <!-- Monthly Rent -->
+                <div class="form-group form-field-cont col-xl-6">
+                  <label class="mb-0 form-field-name">
+                    <span class="text-danger">*</span>
+                    Monthly Rent
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    class="form-control dependent-Sell amount-box"
+                    placeholder="Monthly Rent"
+                    name="monthlyRent"
+                    id="Monthly-Rent"
+                    required
+                  />
+                  <span class="readableAmount ml-2"></span>
+                </div>
+                <!-- Security Deposit -->
+                <div class="form-group form-field-cont col-xl-6">
+                  <label class="mb-0 form-field-name">
+                    <span class="text-danger">*</span>
+                    Security Deposit
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    class="form-control amount-box"
+                    placeholder="Security"
+                    name="securityDeposit"
+                    id="Security"
+                    required
+                  />
+                  <span class="readableAmount ml-2"></span>
+                </div>
+                <!-- Maintenance Cost -->
+                <div class="form-group form-field-cont col-xl-6">
+                  <label class="mb-0 form-field-name">
+                    <span class="text-danger">*</span>
+                    Maintenance Cost
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    class="form-control amount-box"
+                    placeholder="Maintenance"
+                    name="maintenanceCost"
+                    id="maintenance"
+                    required
+                  />
+                  <span class="readableAmount ml-2"></span>
+                </div>
+                <!-- Brokerage -->
+                <div class="form-group form-field-cont col-xl-12">
+                  <label class="mb-0 form-field-name">
+                    <span class="text-danger">*</span>
+                    Brokerage
+                  </label>
+                  <div class="form-check-inline-cont">
+                    <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input
+                          type="radio"
+                          class="form-check-input"
+                          name="isBrokerage"
+                          id="Brokerage-Yes"
+                          value="Yes"
+                        />
+                        <label for="Brokerage-Yes">Yes</label>
+                      </label>
+                    </div>
+                    <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input
+                          type="radio"
+                          class="form-check-input"
+                          name="isBrokerage"
+                          id="Brokerage-No"
+                          value="No"
+                          required
+                        />
+                        <label for="Brokerage-No">No</label>
+                      </label>
+                    </div>
+                    <input
+                      type="number"
+                      min="0"
+                      class="form-control dependent-Brokerage-No amount-box"
+                      placeholder="Brokerage"
+                      name="brokerageAmount"
+                      id="BrokerageAmount"
+                      required
+                    />
+                    <span class="readableAmount ml-2"></span>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- Submit Button -->
+            <div class="form-group form-field-cont">
+              <input
+                type="submit"
+                class="cta-filled details-submit-btn"
+                value="Next"
+              />
+            </div>
+          </form>
+
+          <!-- Location form -->
+          <form
+            class="form location-form disappear"
+            name="location-form"
+            enctype="multipart/form-data"
+            onsubmit="event.preventDefault();"
+          >
+            <div class="form-check-inline-cont">
+              <label class="mb-0 form-field-name">
+                <span class="text-danger">*</span>
+                Country
+              </label>
+              <div class="form-check-inline">
+                <label class="form-check-label">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    name="country"
+                    id="country-IND"
+                    value="INDIA"
+                  />
+                  <label for="country-IND">India</label>
+                </label>
+              </div>
+              <div class="form-check-inline">
+                <label class="form-check-label">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    name="country"
+                    id="country-US"
+                    value="US"
+                    required
+                  />
+                  <label for="country-US">US</label>
+                </label>
+              </div>
+              <div class="form-check-inline">
+                <label class="form-check-label">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    name="country"
+                    id="country-Europe"
+                    value="Europe"
+                    required
+                  />
+                  <label for="country-Europe">Europe</label>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group form-field-cont">
+              <label class="mb-0 form-field-name">
+                <span class="text-danger">*</span>
+                Property address
+              </label>
+              <input
+                id="location-field"
+                type="text"
+                list="location"
+                class="form-control location-field"
+                placeholder="Enter property location"
+                autocomplete="off"
+                required
+              />
+              <datalist id="location"></datalist>
+            </div>
+
+            <div class="display-address" style="font-weight: 500"></div>
+
+            <!-- Locality Place -->
+            <div class="form-group form-field-cont">
+              <label class="mb-0 form-field-name">Area/Colony/Mohalla</label>
+              <input
+                class="form-control"
+                placeholder="Type specific area (optional)"
+                type="text"
+                list="locality-place-list"
+                name="localityPlace"
+                id="locality-place"
+              />
+              <datalist id="locality-place-list"></datalist>
+            </div>
+
+            <input type="hidden" name="country" value="India" />
+            <input type="hidden" name="state" value="" />
+            <input type="hidden" name="city" value="" />
+            <input type="hidden" name="locality" value="" />
+
+            <!-- Step Navigators -->
+            <div class="form-group form-field-cont step-nav">
+              <input
+                type="button"
+                class="cta-filled mr-2 show-details-form"
+                value="Previous"
+              />
+              <!-- Submit Button -->
+              <input
+                type="submit"
+                class="cta-filled location-submit-btn"
+                value="Next"
+              />
+            </div>
+          </form>
+
+          <!-- Photos form -->
+          <form
+            class="form photos-form disappear"
+            name="photos-form"
+            enctype="multipart/form-data"
+            onsubmit="event.preventDefault()"
+          >
+            <!-- Youtube Url -->
+            <div class="form-group form-field-cont align-items-start">
+              <label class="mb-0 form-field-name">Youtube URL</label>
+              <div class="w-100">
+                <div class="input-group m-0">
+                  <input
+                    type="text"
+                    class="form-control m-0"
+                    placeholder="Youtube video url (if any)"
+                    name="youtubeUrl"
+                    id="youtube-url"
+                  />
+                  <div class="input-group-append m-0">
+                    <button type="button" class="cta-filled yt-preview-btn">
+                      View Preview
+                    </button>
+                  </div>
+                </div>
+
+                <iframe
+                  class="w-100 disappear rounded youtube-preview-frame"
+                  src=""
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+
+            <!-- Estate Description -->
+            <div class="form-group form-field-cont align-items-start">
+              <label class="mb-0 form-field-name">Property Description</label>
+              <textarea
+                name="estateDescription"
+                placeholder="Briefly describe the property (in less than 1000 letters)..."
+                class="form-control"
+                maxlength="1000"
+                minlength="50"
+                rows="4"
+                id="estate-description"
+                required
+              ></textarea>
+            </div>
+
+            <!-- Existing Photos -->
+            <div class="form-group form-field-cont align-items-start">
+              <label class="mb-0 form-field-name">Existing Photos</label>
+              <div id="existing-photos">
+                <!-- Dynamic content will be inserted here using JavaScript -->
+              </div>
+            </div>
+
+            <!-- Add New Photos -->
+            <!-- Property Photos -->
+            <div class="form-group form-field-cont align-items-lg-start">
+              <label class="mb-0 form-field-name">
+                <span class="text-danger">*</span>
+                Property Photos
+              </label>
+              <div class="property-photos-cont custom-file">
+                <input
+                  class="custom-file-input"
+                  type="file"
+                  name="adPhotos"
+                  accept="image/png, image/jpeg, image/jpg"
+                  id="property-photos"
+                  multiple
+                />
+                <label class="custom-file-label" for="property-photos">
+                  Choose file (max 10)
+                </label>
+              </div>
+            </div>
+            <div class="preview-gallery row">
+              <!-- From preview photos script -->
+            </div>
+
+            <!-- Step Navigators -->
+            <div class="form-group form-field-cont step-nav">
+              <input
+                type="button"
+                class="cta-filled mr-2 show-location-form"
+                value="Previous"
+              />
+              <!-- Submit Button -->
+              <input
+                type="submit"
+                class="cta-filled edit-submit-btn"
+                value="Submit"
+              />
+            </div>
+          </form>
+
+          <!-- Waiting Frame -->
+          <div class="waiting-frame disappear">
+            <img src="" />
+            <span></span>
+            <h3 class="text-center"></h3>
+            <p class="text-center"></p>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer id="footer-content" class="footer container-fluid">
+      <!-- From templates -->
+    </footer>
+
+    <!-- Templates -->
+    <!-- Header template -->
+    <script src="../assets/js/templates/headerTemplate.js"></script>
+    <script id="header-template" type="text/x-handlebars-template">
+      {{> header}}
+    </script>
+
+    <!-- Location Suggestions Template -->
+    <script src="../assets/js/templates/locSuggestionsTemplate.js"></script>
+    <script id="loc-suggestions-template" type="text/x-handlebars-template">
+      {{> locSuggestions}}
+    </script>
+
+    <!-- Footer template -->
+    <script src="../assets/js/templates/footerTemplate.js"></script>
+    <script id="footer-template" type="text/x-handlebars-template">
+      {{> footer}}
+    </script>
+
+    <script src="../assets/js/vendor/jquery.min.js"></script>
+    <script src="../assets/js/vendor/popper.min.js"></script>
+    <script src="../assets/js/vendor/bootstrap.min.js"></script>
+    <script src="../assets/js/vendor/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  </body>
+</html>

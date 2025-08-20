@@ -1,0 +1,33 @@
+.footer {
+    position: relative;
+    padding: 24px 0;
+    color: var(--primary-color);
+    background-color: var(--accent-color);
+    z-index: 400;
+}
+.quick-links {
+    display: flex;
+}
+.footer-link {
+    margin-left: 16px;
+    color: var(--primary-color);
+}
+.footer-link:hover {
+    color: var(--primary-color);
+}
+
+@media screen and (max-width: 768px) {
+    .footer .container {
+        flex-direction: column;
+    }
+    .quick-links {
+        margin-top: 24px;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    .footer-link {
+        width: 50%;
+        margin: 12px 0;
+        text-align: center;
+    }
+}

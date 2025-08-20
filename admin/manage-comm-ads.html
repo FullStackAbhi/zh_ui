@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVDLT85L8B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZVDLT85L8B');
+</script>
+    <script>
+        if(localStorage.getItem("loggedInUser") === null && sessionStorage.getItem("loggedInUser") === null) {
+            sessionStorage.removeItem("loggedInUser");
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "/";
+        } else {
+            let userData = null;
+            if (sessionStorage.getItem("loggedInUser") !== null) {
+                userData = JSON.parse(sessionStorage.getItem("loggedInUser"));
+            } else {
+                userData = JSON.parse(localStorage.getItem("loggedInUser"));
+            }
+
+            if(!userData.user.token) {
+                sessionStorage.removeItem("loggedInUser");
+                localStorage.removeItem("loggedInUser");
+                window.location.href = "/";
+            } else {
+                if(userData.user.userType.toLowerCase() != "admin") {
+                    sessionStorage.removeItem("loggedInUser");
+                    localStorage.removeItem("loggedInUser");
+                    window.location.href = "/";
+                }
+            }
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Comm Ads</title>
+    
+    <!-- ogp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Zilahouse">
+    <meta property="og:description" content="Zilahouse provides a common platform for property buyers & sellers to locate properties of interest in India." />
+    <meta property="og:site_name" content="ZILAHOUSE" />
+    <meta property="og:url" content="https://zilahouse.com" />
+    <meta property="og:image" content="https://zilahouse.com/assets/images/logos/zilahouseOGP.png" />
+
+    <!--Favicon-->
+    <link rel="icon" href="/assets/images/favicon.png" type="image/x-icon">
+
+    <!-- Google Analytics -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1175006767696756" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../assets/css/animate.min.css">
+    
+    <!-- Including Filepond -->
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link
+    href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="../assets/css/mainStyle.css">
+    <link rel="stylesheet" href="../assets/css/headerStyle.css">
+    <link rel="stylesheet" href="../assets/css/signInSignUpStyle.css">
+    <link rel="stylesheet" href="../assets/css/managePropertiesStyle.css">
+    <link rel="stylesheet" href="../assets/css/manageUsersStyle.css">
+    <link rel="stylesheet" href="../assets/css/paginationStyle.css">
+    <link rel="stylesheet" href="../assets/css/footerStyle.css">
+
+    <!-- Include Handlebars -->
+    <script src="../assets/js/vendor/handlebars.js"></script>
+
+    <script src="../assets/js/main.js" type="module"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header-content" class="container-fluid navbar navbar-expand-lg">
+    </header> 
+
+    <!-- Manage Comm Ads -->
+    <div class="container-fluid manage-comm-ads manage">
+        <div class="container">
+            <div class="headline-cont">
+                <h3 class="headline">All Comm Ads</h3>
+            </div>
+            <div class="fns">
+                <!-- Smart Search -->
+                <div class="smart-search-cont">
+                    <input type="text" class="form-control" placeholder="Search comm ads by anything..." id="smart-comm-ad-search" autocomplete="off" autofocus>
+                </div>
+
+                <!-- Create New User -->
+                <button class="cta-filled create-comm-ad-btn">Create Comm Ad</button>
+            </div>
+
+            <!-- Users list -->
+            <div id="comm-ads-table-cont" class="table-cont">
+                <div class="table-responsive">
+                    <table class="comm-ads-table table-bordered table">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%">Id</th>
+                                <th style="width: 20%">Title</th>
+                                <th style="width: 20%">Advertiser</th>
+                                <th style="width: 15%">Mobile</th>
+                                <th style="width: 15%">Type</th>
+                                <th style="width: 10%">Status</th>
+                                <th style="width: 10%">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="comm-ads-list-cont">
+                            <!-- From templates -->
+                        </tbody>
+                    </table>
+                    <div class="loader-cont"></div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div id="pagination-cont" class="pagination-cont">
+                <!-- From templates -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer id="footer-content" class="footer container-fluid">
+        <!-- From templates -->
+    </footer>
+
+    <!-- Create Comm Ad Form Cont -->
+    <div id="create-comm-ad-cont" class="container-fluid create-comm-ad-box bottom-box">
+        <!-- from templates -->
+    </div>
+
+
+    <!-- Templates -->
+    <!-- Header template -->
+    <script src="../assets/js/templates/headerTemplate.js"></script>
+    <script id="header-template" type="text/x-handlebars-template">
+        {{> header}}
+    </script>
+
+    <!-- Pagination template -->
+    <script src="../assets/js/templates/paginationTemplate.js"></script>
+    <script id="pagination-template" type="text/x-handlebars-template">
+        {{> pagination}}
+    </script>
+
+    <!-- Comm Ads list template -->
+    <script id="comm-ads-list-template" type="text/x-handlebars-template">
+        {{#each commAd}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{title}}</td>
+            <td>{{entityName}}</td>
+            <td>{{entityMobile}}</td>
+            <td>{{entityType}}</td>
+            {{#ifEquals status "Active"}}
+            <td id="td-status{{id}}" class="table-success">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input status-field" id="status{{id}}" checked data-id="{{id}}">
+                    <label class="custom-control-label status-label" for="status{{id}}">Active</label>
+                </div>
+            </td>
+            {{/ifEquals}}
+            {{#ifEquals status "Inactive"}}
+            <td id="td-status{{id}}" class="table-danger">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input status-field" id="status{{id}}" data-id="{{id}}">
+                    <label class="custom-control-label status-label" for="status{{id}}">Inactive</label>
+                </div>
+            </td>
+            {{/ifEquals}}
+            <td>
+                <a id="edit-comm-ad{{id}}" class="cta-filled cta-filled-sm edit-comm-ad bg-primary" data-id="{{id}}">Edit</a>
+            </td>
+        </tr>
+        {{/each}}
+    </script>
+
+    <!-- Create Comm Ad Template -->
+    <script id="create-comm-ad-template" type="text/x-handlebars-template">
+        <div class="container form-cont create-comm-ad-cont w-100">
+            <div class="headline-cont">
+                <h2 class="headline">Create Comm Ad</h2>
+                <ion-icon class="close-create-comm-ad close-icon" name="close-outline"></ion-icon>
+            </div>
+            <!-- Form msg -->
+            <div id="comm-ad-form-msg" class="form-msg disappear">
+                <div class="alert">
+                    <span></span>
+                </div>
+            </div>
+
+            <form method="POST" class="form comm-ad-form" onsubmit="event.preventDefault();">
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- Ad Title -->
+                        <div class="form-group">
+                            <input type="text" name="title" id="title" class="form-control" placeholder="*Ad Title" required>
+                        </div>
+                        <!-- Ad Url -->
+                        <div class="form-group">
+                            <input type="url" name="ad-url" id="ad-url" class="form-control" placeholder="*Ad Url" required>
+                        </div>
+                        <!-- Entity Name -->
+                        <div class="form-group">
+                            <input type="text" name="entity-name" id="entity-name" class="form-control" placeholder="*Entity Name" required>
+                        </div>
+                        <!-- Entity Mobile -->
+                        <div class="form-group">
+                            <input type="tel" inputmode="numeric" name="entity-mobile" id="entity-mobile" maxlength="10" minlength="10" class="form-control" placeholder="*Entity Mobile number" required>
+                        </div>
+                        <!-- Entity Type -->
+                        <div class="form-group">
+                            <input type="text" name="entity-type" id="entity-type" class="form-control" placeholder="*Entity Type" required>
+                        </div>
+                        <!-- Entity Address -->
+                        <div class="form-group">
+                            <textarea name="entity-address" id="entity-address" class="form-control" placeholder="*Entity Address" required></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="file" name="ad-banner" id="ad-banner" required>
+                        </div>
+                    </div>
+                </div>
+                <!-- Direct Registration -->
+                <button type="submit" class="cta-filled w-100 create-comm-ad-submit">Create Comm Ad</button>
+            </form>
+        </div>
+    </script>
+
+    <script>    
+        Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+            return (arg1.toLowerCase() == arg2.toLowerCase()) ? options.fn(this) : options.inverse(this);
+        });
+    </script>
+
+    <!-- Pagination template -->
+    <script src="../assets/js/templates/paginationTemplate.js"></script>
+    <script id="pagination-template" type="text/x-handlebars-template">
+        {{> pagination}}
+    </script>
+
+    <!-- Footer template -->
+    <script src="../assets/js/templates/footerTemplate.js"></script>
+    <script id="footer-template" type="text/x-handlebars-template">
+        {{> footer}}
+    </script>
+
+    <script src="../assets/js/vendor/jquery.min.js"></script>
+    <script src="../assets/js/vendor/popper.min.js"></script>
+    <script src="../assets/js/vendor/bootstrap.min.js"></script>
+    <script src="../assets/js/vendor/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+
+    <!-- FilePond JS -->
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+    <!-- <script src="https://unpkg.com/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.js"></script> -->
+    <script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+</body>
+</html>

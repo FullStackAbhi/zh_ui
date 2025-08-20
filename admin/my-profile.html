@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVDLT85L8B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZVDLT85L8B');
+</script>
+    <script>
+        if(localStorage.getItem("loggedInUser") === null && sessionStorage.getItem("loggedInUser") === null) {
+            sessionStorage.removeItem("loggedInUser");
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "/";
+        } else {
+            let userData = null;
+            if (sessionStorage.getItem("loggedInUser") !== null) {
+                userData = JSON.parse(sessionStorage.getItem("loggedInUser"));
+            } else {
+                userData = JSON.parse(localStorage.getItem("loggedInUser"));
+            }
+
+            if(!userData.user.token) {
+                sessionStorage.removeItem("loggedInUser");
+                localStorage.removeItem("loggedInUser");
+                window.location.href = "/";
+            }
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile</title>
+    
+    <!-- ogp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Zilahouse">
+    <meta property="og:description" content="Zilahouse provides a common platform for property buyers & sellers to locate properties of interest in India." />
+    <meta property="og:site_name" content="ZILAHOUSE" />
+    <meta property="og:url" content="https://zilahouse.com" />
+    <meta property="og:image" content="https://zilahouse.com/assets/images/logos/zilahouseOGP.png" />
+
+    <!--Favicon-->
+    <link rel="icon" href="/assets/images/favicon.png" type="image/x-icon">
+
+    <!-- Google Analytics -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1175006767696756" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../assets/css/animate.min.css">
+    
+    <link rel="stylesheet" href="../assets/css/mainStyle.css">
+    <link rel="stylesheet" href="../assets/css/headerStyle.css">
+    <link rel="stylesheet" href="../assets/css/managePropertiesStyle.css">
+    <link rel="stylesheet" href="../assets/css/footerStyle.css">
+
+    <!-- Include Handlebars -->
+    <script src="../assets/js/vendor/handlebars.js"></script>
+
+    <script src="../assets/js/main.js" type="module"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header-content" class="container-fluid navbar navbar-expand-lg">
+    </header> 
+
+    <!-- Manage Properties -->
+    <div class="container-fluid manage-profile manage">
+        <div id="user-cont" class="container text-center d-flex flex-column align-items-center">
+            <!-- from templates -->
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer id="footer-content" class="footer container-fluid">
+        <!-- From templates -->
+    </footer>
+
+
+    <!-- Templates -->
+    <!-- Header template -->
+    <script src="../assets/js/templates/headerTemplate.js"></script>
+    <script id="header-template" type="text/x-handlebars-template">
+        {{> header}}
+    </script>
+
+    <!-- Footer template -->
+    <script id="user-template" type="text/x-handlebars-template">
+        {{#if profileImgUrl}}
+            <div class="img-cont" style="background-image: url({{userData.user.profileImgUrl}}); width: 40px; height: 40px;"></div>
+        {{else}}
+            <div class="img-cont" style="background-image: url(../assets/images/icons/user.png); width: 40px; height: 40px;"></div>
+        {{/if}}
+        <h5 class="mt-3 mb-0">{{displayName}}</h5>
+        <small>
+            {{userType}},
+            {{#ifEquals active "Active"}} 
+                <span class="text-success">{{active}}</span>
+            {{/ifEquals}}
+            {{#ifEquals active "Inactive"}} 
+                <span class="text-danger">{{active}}</span>
+            {{/ifEquals}}
+        </small>
+        <div class="table-responsive text-left">
+            <table class="table mt-3 table-bordered">
+                <tbody>
+                    <tr>
+                        <th>Mobile</th>
+                        <td>{{mobile}}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{emailId}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </script>
+
+    <!-- Footer template -->
+    <script src="../assets/js/templates/footerTemplate.js"></script>
+    <script id="footer-template" type="text/x-handlebars-template">
+        {{> footer}}
+    </script>
+ 
+    <script src="../assets/js/vendor/jquery.min.js"></script>
+    <script src="../assets/js/vendor/popper.min.js"></script>
+    <script src="../assets/js/vendor/bootstrap.min.js"></script>
+    <script src="../assets/js/vendor/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+ </body>
+ </html>

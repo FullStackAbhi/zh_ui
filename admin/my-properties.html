@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVDLT85L8B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZVDLT85L8B');
+</script>
+    <script>
+        if(localStorage.getItem("loggedInUser") === null && sessionStorage.getItem("loggedInUser") === null) {
+            sessionStorage.removeItem("loggedInUser");
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "/";
+        } else {
+            let userData = null;
+            if (sessionStorage.getItem("loggedInUser") !== null) {
+                userData = JSON.parse(sessionStorage.getItem("loggedInUser"));
+            } else {
+                userData = JSON.parse(localStorage.getItem("loggedInUser"));
+            }
+
+            if(!userData.user.token) {
+                sessionStorage.removeItem("loggedInUser");
+                localStorage.removeItem("loggedInUser");
+                window.location.href = "/";
+            }
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Properties</title>
+    
+    <!-- ogp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Zilahouse">
+    <meta property="og:description" content="Zilahouse provides a common platform for property buyers & sellers to locate properties of interest in India." />
+    <meta property="og:site_name" content="ZILAHOUSE" />
+    <meta property="og:url" content="https://zilahouse.com" />
+    <meta property="og:image" content="https://zilahouse.com/assets/images/logos/zilahouseOGP.png" />
+
+    <!--Favicon-->
+    <link rel="icon" href="/assets/images/favicon.png" type="image/x-icon">
+
+    <!-- Google Analytics -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1175006767696756" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../assets/css/animate.min.css">
+    
+    <link rel="stylesheet" href="../assets/css/mainStyle.css">
+    <link rel="stylesheet" href="../assets/css/headerStyle.css">
+    <link rel="stylesheet" href="../assets/css/managePropertiesStyle.css">
+    <link rel="stylesheet" href="../assets/css/paginationStyle.css">
+    <link rel="stylesheet" href="../assets/css/footerStyle.css">
+
+    <!-- Include Handlebars -->
+    <script src="../assets/js/vendor/handlebars.js"></script>
+
+    <script src="../assets/js/main.js" type="module"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header-content" class="container-fluid navbar navbar-expand-lg">
+    </header> 
+
+    <!-- Manage Properties -->
+    <div class="container-fluid manage-properties manage">
+        <div class="container">
+            <div class="headline-cont">
+                <h3 class="headline">My Properties</h3>
+            </div>
+            <div class="fns">
+                <!-- Smart Search -->
+                <div class="smart-search-cont">
+                    <input type="text" class="form-control" placeholder="Search properties by anything..." name="smart-search" id="smart-search" autocomplete="off" autofocus>
+                </div>
+            </div>
+
+            <!-- Properties list -->
+            <div id="properties-table-cont" class="table-cont">
+                <div class="table-responsive">
+                    <table class="properties-table table-bordered table">
+                        <thead>
+                            <tr>
+                                <th class="th-estate-id">Id</th>
+                                <th class="th-estate-name">Name</th>
+                                <th class="th-estate-state">State</th>
+                                <th class="th-estate-status">Status</th>
+                                <th class="th-estate-action">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="props-list-cont">
+                            <!-- From templates -->
+                        </tbody>
+                    </table>
+                    <div class="loader-cont"></div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div id="pagination-cont" class="pagination-cont">
+                <!-- From templates -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer id="footer-content" class="footer container-fluid">
+        <!-- From templates -->
+    </footer>
+
+
+    <!-- Templates -->
+    <!-- Header template -->
+    <script src="../assets/js/templates/headerTemplate.js"></script>
+    <script id="header-template" type="text/x-handlebars-template">
+        {{> header}}
+    </script>
+
+    <!-- Properties Table Template -->
+    <script id="props-list-template" type="text/x-handlebars-template">
+        {{#each property}}
+        <tr id="row{{estateId}}">
+            <td class="estate-id">{{estateId}}</td>
+            <td class="estate-name">
+                <a href="../estate.html?id={{estateId}}&code={{estateCode}}" class="cta-blank">
+                    {{estateTitle}}
+                    <ion-icon class="ml-1" name="link"></ion-icon>
+                </a>
+            </td>
+            {{#ifEquals status "Active"}}
+            <td id="estate-state{{estateId}}" class="estate-state table-success">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input myp-state-field" id="state{{estateId}}" checked data-id="{{estateId}}">
+                    <label class="custom-control-label state-label" for="state{{estateId}}" data-id="{{estateId}}">Active</label>
+                </div>
+            </td>
+            {{/ifEquals}}
+            {{#ifEquals status "Inactive"}}
+            <td id="estate-state{{estateId}}" class="estate-state table-danger">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input myp-state-field" id="state{{estateId}}" data-id="{{estateId}}">
+                    <label class="custom-control-label state-label" for="state{{estateId}}">Inactive</label>
+                </div>
+            </td>
+            {{/ifEquals}}
+            {{#ifEquals reviewStatus "Under Review"}}
+            <td id="estate-status{{estateId}}" class="estate-status table-warning">
+                <select class="custom-select myp-status-field" id="status{{estateId}}" data-id="{{estateId}}">
+                    <option value="Under Review" selected>Under Review</option>
+                    <option value="Sold Out">Sold Out</option>
+                </select>
+            </td>
+            {{/ifEquals}}
+            {{#ifEquals reviewStatus "Reviewed"}}
+            <td id="estate-status{{estateId}}" class="estate-status table-success">
+                <select class="custom-select myp-status-field" id="status{{estateId}}" data-id="{{estateId}}">
+                    <option value="Reviewed" selected>Reviewed</option>
+                    <option value="Sold Out">Sold Out</option>
+                </select>
+            </td>
+            {{/ifEquals}}
+            {{#ifEquals reviewStatus "Rejected"}}
+            <td id="estate-status{{estateId}}" class="estate-status table-danger">
+                <select class="custom-select myp-status-field" id="status{{estateId}}" data-id="{{estateId}}">
+                    <option value="Rejected" selected>Rejected</option>
+                    <option value="Sold Out">Sold Out</option>
+                </select>
+            </td>
+            {{/ifEquals}}
+            {{#ifEquals reviewStatus "Sold Out"}}
+            <td id="estate-status{{estateId}}" class="estate-status table-secondary">
+                <div class="mt-3 ml-3">{{reviewStatus}}</div>
+            </td>
+            {{/ifEquals}}
+            <td class="estate-action">
+                <!-- <a class="cta-filled cta-filled-sm edit-photos">Edit Photos</button> -->
+                <a href="edit-properties.html?id={{estateId}}&code={{estateCode}}" class="cta-filled cta-filled-sm edit-prop ml-0">Edit</button>
+            </td>
+        </tr>
+        {{/each}}
+    </script>
+
+
+    <!-- Pagination template -->
+    <script src="../assets/js/templates/paginationTemplate.js"></script>
+    <script id="pagination-template" type="text/x-handlebars-template">
+        {{> pagination}}
+    </script>
+
+    <script>    
+        Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+            return (arg1.toLowerCase() == arg2.toLowerCase()) ? options.fn(this) : options.inverse(this);
+        });
+    </script>
+
+    <!-- Footer template -->
+    <script src="../assets/js/templates/footerTemplate.js"></script>
+    <script id="footer-template" type="text/x-handlebars-template">
+        {{> footer}}
+    </script>
+
+    <script src="../assets/js/vendor/jquery.min.js"></script>
+    <script src="../assets/js/vendor/popper.min.js"></script>
+    <script src="../assets/js/vendor/bootstrap.min.js"></script>
+    <script src="../assets/js/vendor/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+</body>
+</html>

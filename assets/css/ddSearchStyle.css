@@ -1,0 +1,66 @@
+.dd-search-cont {
+    position: relative;
+    border-radius: 4px;
+}
+.dd-search-field {
+    /* font-size: 14px; */
+    font-weight: 600;
+}
+.dd-search-field::placeholder {
+    font-size: 15px;
+    opacity: 1;
+    color: #495057;
+    font-weight: 600;
+}
+.dd-search-field:focus {
+    border-bottom: none;
+    border-radius: 4px 4px 0px 0px;
+}
+.dd-options-cont {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    max-height: 0;
+    overflow-y: auto;
+    transition-duration: 0.3s;
+    border-radius: 4px;
+    background-color: #ffffff;
+    z-index: 50;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.1);
+}
+.dd-search-field:focus + .dd-options-cont {
+    max-height: 200px;
+    border-radius: 0px 0px 4px 4px;
+    border: 1px solid #404040;
+    border-top: none;
+}
+.dd-options-cont::-webkit-scrollbar {
+    width: 4px;
+}
+.dd-options-cont::-webkit-scrollbar-track {
+    border-radius: 4px;
+    background-color: #efefef;
+}
+.dd-options-cont::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: #cdcdcd;
+}
+
+.dd-options-cont table {
+    width: 100%;
+}
+.dd-options-cont table tr {
+    width: 100%;
+    cursor: pointer;
+}
+.dd-options-cont table tr:hover {
+    background-color: #efefef;
+}
+.dd-options-cont table tr td {
+    font-size: 14px;
+    padding: 6px 12px !important;
+}
+.results div {
+    font-size: 14px !important;
+    padding: 6px 12px !important;
+}

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZVDLT85L8B"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-ZVDLT85L8B");
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Wishlist | Zila House</title>
+
+    <!-- ogp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Zilahouse" />
+    <meta
+      property="og:description"
+      content="Zilahouse provides a common platform for property buyers & sellers to locate properties of interest in India."
+    />
+    <meta property="og:site_name" content="ZILAHOUSE" />
+    <meta property="og:url" content="https://zilahouse.com" />
+    <meta
+      property="og:image"
+      content="https://zilahouse.com/assets/images/logos/zilahouseOGP.png"
+    />
+
+    <!--Favicon-->
+    <link rel="icon" href="/assets/images/favicon.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1175006767696756"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/animate.min.css" />
+
+    <link rel="stylesheet" href="assets/css/mainStyle.css" />
+    <link rel="stylesheet" href="assets/css/headerStyle.css" />
+    <link rel="stylesheet" href="assets/css/searchStyle.css" />
+    <link rel="stylesheet" href="assets/css/exploreStyle.css" />
+    <link rel="stylesheet" href="assets/css/propertyStyle.css" />
+    <link rel="stylesheet" href="assets/css/signInSignUpStyle.css" />
+    <link rel="stylesheet" href="assets/css/footerStyle.css" />
+
+    <!-- Include Handlebars-->
+    <script src="assets/js/vendor/handlebars.js"></script>
+
+    <script src="assets/js/main.js" type="module"></script>
+  </head>
+  <body class="explore-page">
+    <!-- Header -->
+    <header
+      id="header-content"
+      class="container-fluid navbar navbar-expand-lg"
+    ></header>
+
+    <!-- Page Body -->
+    <div class="container-fluid page-body">
+      <div class="container">
+        <div class="row">
+          <!-- Wishlist properties -->
+          <div class="col-lg-9">
+            <div class="headline-cont">
+              <h3 class="headline w-name"></h3>
+            </div>
+            <div id="wishlist-properties-content" class="search-responses">
+              <!-- From properties template -->
+            </div>
+            <div class="Load-btn">
+              <button
+                id="go-to-start-wishlist"
+                style="display: none"
+                class="cta-filled cta-filled-sm"
+              >
+                Go to start
+              </button>
+            </div>
+
+            <div class="Load-btn">
+              <button id="load-more-wishlist" class="cta-filled cta-filled-sm">
+                Load More...
+              </button>
+            </div>
+          </div>
+
+          <!-- Ads -->
+          <div id="ads-cont" class="col-lg-3 ads-cont">
+            <!-- from templates -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Signin Signup signin via otp wrapper -->
+    <div id="signin-signup-wrapper-content">
+      <!-- From templates -->
+    </div>
+
+    <!-- Fullscreen Slideshow of properties -->
+    <div
+      id="gallery-slideshow-cont"
+      class="container-fluid gallery-slideshow bottom-box py-0"
+    >
+      <!-- From templates -->
+    </div>
+
+    <!-- Footer Section -->
+    <footer id="footer-content" class="footer container-fluid">
+      <!-- From templates -->
+    </footer>
+
+    <!-- Templates -->
+    <!-- Header template -->
+    <script src="assets/js/templates/headerTemplate.js"></script>
+    <script id="header-template" type="text/x-handlebars-template">
+      {{> header}}
+    </script>
+
+    <!-- Search Bar Template -->
+    <script src="assets/js/templates/searchTemplate.js"></script>
+    <script id="search-template" type="text/x-handlebars-template">
+      {{> searchBar}}
+    </script>
+
+    <!-- Signin Signup template -->
+    <script src="assets/js/templates/signinTemplate.js"></script>
+    <script id="signin-template" type="text/x-handlebars-template">
+      {{> signin}}
+    </script>
+
+    <!-- property template -->
+    <script src="assets/js/templates/propertyTemplate.js"></script>
+    <script id="property-template" type="text/x-handlebars-template">
+      {{> property}}
+    </script>
+
+    <!-- full gallery template -->
+    <script src="assets/js/templates/fullGalleryTemplate.js"></script>
+    <script id="full-gallery-template" type="text/x-handlebars-template">
+      {{> gallery}}
+    </script>
+
+    <!-- Comm Ads template -->
+    <script src="assets/js/templates/commAdTemplate.js"></script>
+    <script id="comm-ad-template" type="text/x-handlebars-template">
+      {{> commAd}}
+    </script>
+
+    <!-- Footer template -->
+    <script src="assets/js/templates/footerTemplate.js"></script>
+    <script id="footer-template" type="text/x-handlebars-template">
+      {{> footer}}
+    </script>
+
+    <script src="assets/js/vendor/jquery.min.js"></script>
+    <script src="assets/js/vendor/popper.min.js"></script>
+    <script src="assets/js/vendor/bootstrap.min.js"></script>
+    <script src="assets/js/vendor/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <div id="share-popup" class="share-popup">
+      <div class="share-popup-content">
+        <span class="close">&times;</span>
+        <h3>Share this property</h3>
+        <input type="text" id="share-url" readonly />
+        <button id="copy-url-btn" class="cta-filled cta-filled-sm">
+          Copy URL
+        </button>
+        <div class="social-icons">
+          <a href="#" id="facebook-share">
+            <i class="fab fa-facebook fa-2x"></i>
+          </a>
+          <a href="#" id="twitter-share">
+            <i class="fab fa-twitter fa-2x"></i>
+          </a>
+          <a href="#" id="whatsapp-share">
+            <i class="fab fa-whatsapp fa-2x"></i>
+          </a>
+          <a href="#" id="email-share">
+            <i class="fas fa-envelope fa-2x"></i>
+          </a>
+          <!-- Add more social media icons as needed -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

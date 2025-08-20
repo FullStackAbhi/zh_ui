@@ -1,0 +1,39 @@
+/* Pagination */
+.pagination-cont {
+    display: flex;
+    margin-top: 24px;
+    justify-content: center;
+    max-width: 100%;
+}
+.pagination {
+    max-width: 100%;
+    box-shadow: 8px 8px 12px rgba(0,0,0,0.1);
+}
+.page-item-cont {
+    position: relative;
+    display: flex;
+    max-width: 100%;
+    overflow: auto;
+}
+.page-item-cont::-webkit-scrollbar {
+    height: 2px !important;
+    background-color: transparent;
+    opacity: 0.4 !important;
+}
+.page-item-cont::-webkit-scrollbar-thumb {
+    background-color: #10103832;
+}
+.page-item {
+    user-select: none;
+}
+.page-link {
+    border-radius: 0 !important;
+}
+.prev-page-btn .page-link {
+    border-top-left-radius: 4px !important;
+    border-bottom-left-radius: 4px !important;
+}
+.next-page-btn .page-link {
+    border-top-right-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+}

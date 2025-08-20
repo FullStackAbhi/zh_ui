@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="216" height="83.495" viewBox="0 0 216 83.495">
+  <g id="Logo" transform="translate(1)">
+    <text id="ZILAHOUSE" transform="translate(107 75.495)" fill="#101038" font-size="32" font-family="Montserrat-ExtraBold, Montserrat" font-weight="800" letter-spacing="0.065em"><tspan x="-107.184" y="0">ZILAHOUSE</tspan></text>
+    <text id="_.com" data-name=".com" transform="translate(186 45.247)" fill="#101038" font-size="20" font-family="Montserrat-ExtraBold, Montserrat" font-weight="800" letter-spacing="0.065em"><tspan x="-27.83" y="0">.com</tspan></text>
+    <g id="Layer_1" data-name="Layer 1" transform="translate(-1.514 -15)">
+      <path id="Path_1008" data-name="Path 1008" d="M37.647,35.49h3.985V31.466H37.647Zm6.694,0H48.4V31.466H44.34Zm47.184,9.005L74.307,27.539V10.127l-8.29-8.27V19.346L49.573,3.153,46.352,0,43.131,3.173,1.18,44.495l45.172-31.3ZM46.468,3.463v6.771L17.982,30.876ZM37.647,29.154h3.985v-4H37.647Zm6.694,0H48.4v-4H44.34Zm6.694,0h4.024v-4H51.034Zm0,6.336h4.024V31.466H51.034Z" transform="translate(0.334 15)" fill="#101038"/>
+    </g>
+  </g>
+</svg>

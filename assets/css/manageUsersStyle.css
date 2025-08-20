@@ -1,0 +1,19 @@
+.status-field, .status-label {
+    cursor: pointer;
+}
+.create-comm-ad-cont {
+    width: 95%;
+}
+
+@media screen and (max-width: 768px) {
+    
+}
+
+@media screen and (max-width: 576px) {
+    .create-new-user-btn, .create-comm-ad-btn {
+        width: 100%;
+    }
+    .create-comm-ad-cont {
+        width: 92% !important;
+    }
+}

@@ -1,0 +1,272 @@
+.estate-content {
+    position: relative;
+    margin: 102px 0 32px 0;
+    font-weight: 600;
+}
+/* Contact Info */
+.contact-cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px !important;
+}
+.contact-details {
+    display: flex;
+    align-items: center;
+}
+.contact-dp {
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+    border-radius: 50%;
+}
+.estate-date {
+    font-weight: 500;
+    font-size: 14px;
+}
+.contact-cont .ctas-cont {
+    display: flex;
+    align-items: center;
+}
+.contact-cont .ctas-cont a {
+    margin: 0;
+}
+
+/* Estate Pictures */
+.estate-pictures-cont {
+    margin-bottom: 24px;
+    border-radius: 8px;
+    overflow: hidden;
+    /* transform: scale(0.96); */
+    /* animation: estatePop 1.5s ease-out forwards; */
+    /* box-shadow: 0px 0px 0px rgba(205, 205, 205, 1); */
+    box-shadow: 4px 4px 12px rgba(0,0,0,0.1);
+}
+.estate-pictures {
+    width: 100%;
+    cursor: pointer;
+}
+.estate-picture {
+  display: grid;
+  place-items: center;
+  height: 380px;
+}
+/* change 18-04-2023 */
+.estate-picture.img-cont {
+  background-size: 100% 100%;
+}
+.estate-picture img {
+    width: 100%;
+}
+.swiper-pagination5 {
+    bottom: 0;
+    font-size: 14px;
+    padding: 18px 0 8px 0;
+    color: var(--primary-color);
+    background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1));
+}
+.estate-nav {
+    top: 44%;
+    transform: scale(0.75);
+    font-weight: 300;
+}
+
+/* Estate name and description */
+.estate-identifiers {
+    margin-bottom: 24px;
+}
+.estate-name-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 20px;
+    letter-spacing: 0.3px;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+.estate-desc {
+    margin-top: 8px;
+    font-size: 15px;
+    line-height: 24px;
+}
+
+/* Estate Features & Estate Charges */
+.estate-features,
+.estate-charges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-bottom: 0px !important;
+}
+.estate-feature,
+.estate-charge {
+  width: 33.33%;
+  padding: 0 2px !important;
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+.ef-name,
+.ec-name {
+  font-size: 10px;
+  opacity: 0.8;
+  letter-spacing: 0.3px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+.ef-value,
+.ec-value {
+  text-indent: -1px;
+  letter-spacing: 0.4px;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+/* Estate Address */
+.estate-address {
+    display: flex;
+    align-items: flex-start;
+    padding-bottom: 0 !important;
+}
+.loc-icon {
+    position: relative;
+    top: 2px;
+    display: flex;
+    margin-right: 12px;
+    font-size: 24px;
+}
+address {
+    padding: 0;
+    letter-spacing: 0.3px;
+}
+
+/* Estate Video */
+.estate-video iframe {
+    display: block;
+    width: 100%;
+    height: 30vw;
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 70vh;
+    color: var(--secondary-color);
+    opacity: 0.4;
+}
+.loader .spinner-border {
+    border-width: 3px;
+}
+.estate-box {
+    border-radius: 8px;
+    padding: 16px 18px;
+    /* transform: scale(0.96); */
+    margin-bottom: 24px;
+    overflow: hidden;
+    /* animation: pop 1.5s ease-out forwards; */
+    box-shadow: 4px 4px 12px rgba(0,0,0,0.1);
+    background-color: var(--primary-color);
+}
+@keyframes pop {
+    100% {
+        transform: scale(1);
+        box-shadow: var(--high2);
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .contact-cont {
+        align-items: center;
+    }
+    .contact-details {
+        width: 100%;
+    }
+    .contact-cont .ctas-cont {
+        width: auto !important;
+        margin-top: 0;
+    }
+    .contact-cont .ctas-cont a {
+        width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .estate-content .container {
+        padding: 0;
+    }
+    .estate-video iframe {
+        height: 53vw;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .estate-content {
+        margin: 88px 0 32px 0;
+    }
+    .contact-cont .ctas-cont {
+        width: auto !important;
+        margin-top: 0;
+    }
+    .contact-cont .ctas-cont a {
+        width: 100% !important;
+    }
+    .contact-cont {
+        padding: 12px 14px !important;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .contact-cont .ctas-cont {
+        width: 100% !important;
+        margin-top: 8px;
+    }
+    .contact-cont .ctas-cont a {
+        width: 100% !important;
+    }
+    .estate-call {
+        width: 100%;
+        margin: 0 !important;
+    }
+
+    .estate-picture {
+        height: 220px;
+    }
+
+    .estate-name-price {
+        font-size: 16px;
+    }
+
+    .estate-features, .estate-charges {
+        padding-bottom: 0px !important;
+    }
+    .estate-feature, .estate-charge {
+        width: 50%;
+        margin-bottom: 10px;
+    }
+    .ef-value, .ec-value {
+        text-indent: -1px;
+        letter-spacing: 0.3px;
+        font-size: 14px;
+    }
+    
+    .estate-address {
+        padding-bottom: 0px !important;
+    }
+    .loc-icon {
+        top: 4px;
+        font-size: 18px;
+        margin-right: 8px;
+    }
+    address {
+        font-size: 14px;
+    }
+
+    .estate-video iframe {
+        height: 52vw;
+    }
+
+    .estate-box {
+        padding: 14px 12px;
+    }
+}

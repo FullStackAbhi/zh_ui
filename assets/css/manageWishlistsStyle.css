@@ -1,0 +1,91 @@
+.create-wl-box {
+    justify-content:flex-start;
+    align-items: center;
+    font-weight: 500;
+    user-select: none;
+}
+.create-wl-cont .headline-cont {
+    margin-bottom: 8px !important;
+}
+
+.wl-props-cont {
+    height: calc(100vh - 194px);
+}
+.tab-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.search-prop-cont, .search-user-cont {
+    width: 30%;
+}
+.search-prop-input, .search-user-input {
+    position: relative;
+    font-size: 14px;
+    height: 32px !important;
+    padding: auto 12px !important;
+}
+.side-cont {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-left: 4px;
+}
+.custom-control-input, .custom-control-label {
+    cursor: pointer;
+    font-size: 14px;
+}
+.custom-control-label span {
+    position: relative;
+    top: 1.4px;
+    font-size: 14px;
+}
+.tab-body {
+    padding: 0;
+    margin-top: 8px;
+    max-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+}
+.tab-body::-webkit-scrollbar {
+    width: 4px;
+}
+.tab-body::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: var(--accent-color);
+}
+.tab-body .table {
+    font-size: 14px;
+    /* background-color: transparent; */
+}
+.tab-body thead {
+    position: sticky;
+    top: 0;
+    background-color: var(--primary-color);
+}
+
+@media screen and (max-width: 768px) {
+    
+}
+
+@media screen and (max-width: 576px) {
+    .create-new-wl-btn {
+        width: 100%;
+    }
+    .swipeable-cont {
+        height: calc(100vh - 170px);
+    }
+    .tab-header {
+        font-size: 14px;
+    }
+    .search-prop-cont {
+        width: 60%;
+    }
+    .custom-control-label span {
+        position: relative;
+        top: 1.4px;
+        font-size: 12px;
+    }
+}

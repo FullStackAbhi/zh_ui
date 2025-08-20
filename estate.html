@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVDLT85L8B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZVDLT85L8B');
+</script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="theme-color" content="">
+
+    <title>Estate | Zila House</title>
+
+    <!-- ogp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Zilahouse">
+    <meta property="og:description" content="Zilahouse provides a common platform for property buyers & sellers to locate properties of interest in India." />
+    <meta property="og:site_name" content="ZILAHOUSE" />
+    <meta property="og:url" content="https://zilahouse.com" />
+    <meta property="og:image" content="https://zilahouse.com/assets/images/logos/zilahouseOGP.png" />
+
+    <!--Favicon-->
+    <link rel="icon" href="/assets/images/favicon.png" type="image/x-icon">
+
+    <!-- Google Analytics -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1175006767696756" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    
+    <link rel="stylesheet" href="assets/css/mainStyle.css">
+    <link rel="stylesheet" href="assets/css/headerStyle.css">
+    <link rel="stylesheet" href="assets/css/homeStyle.css">
+    <link rel="stylesheet" href="assets/css/estateStyle.css">
+    <link rel="stylesheet" href="assets/css/propertyStyle.css">
+    <link rel="stylesheet" href="assets/css/signInSignUpStyle.css">
+    <link rel="stylesheet" href="assets/css/footerStyle.css">
+
+    <!-- Include Handlebars-->
+    <script src="assets/js/vendor/handlebars.js"></script>
+    
+    <script src="assets/js/main.js" type="module"></script>
+
+</head>
+<body>
+    <!-- Header -->
+    <header id="header-content" class="container-fluid navbar navbar-expand-lg">
+        <!-- From Templates -->
+    </header>
+
+    <!-- Estate Content -->
+    <div class="container-fluid estate-content">
+        <div class="container">
+            <div class="row">
+                <!-- estate cont -->
+                <div id="estate-cont" class="col-lg-9 estate-cont">
+                    <!-- From templates -->
+                </div>
+
+                <!-- Commercial Ads -->
+                <div id="ads-cont" class="col-lg-3 ads-cont" style="box-shadow: inset 0 0 1px #000;">
+                    <!-- from templates -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Properties -->
+    <div class="container-fluid p-0 recent-properties-section">
+        <div class="container">
+            <div class="headline-cont">
+                <h2 class="headline">Recent Properties</h2>
+                <a href="explore.html?country=INDIA&purpose=Sale&property-type=Apartment+Flat&bhk=1BHK&location=Delhi" class="side-link">View More</a>
+            </div>
+
+            <div class="recent-properties-cont swiper-container swiper2">
+                <div id="recent-properties-content" class="swiper-wrapper">
+                    <!-- From templates -->
+                </div>     
+                
+                <div class="swiper-nav swiper-nav2">
+                    <ion-icon class="prev" name="chevron-back-outline"></ion-icon>
+                    <div class="swiper-pagination swiper-pagination2"></div>
+                    <ion-icon class="next ml-3" name="chevron-forward-outline"></ion-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Fullscreen Slideshow of properties -->
+    <div id="gallery-slideshow-cont" class="container-fluid gallery-slideshow bottom-box py-0">
+        <!-- From templates -->
+    </div>
+
+    <!-- Signin Signup signin via otp wrapper -->
+    <div id="signin-signup-wrapper-content">
+        <!-- From templates -->
+    </div>
+
+    <!-- Footer Section -->
+    <footer id="footer-content" class="footer container-fluid">
+        <!-- From templates -->
+    </footer>
+
+
+    <!-- Templates -->
+    <!-- Header template -->
+    <script src="assets/js/templates/headerTemplate.js"></script>
+    <script id="header-template" type="text/x-handlebars-template">
+        {{> header}}
+    </script>
+
+    <!-- Signin Signup template -->
+    <script src="assets/js/templates/signinTemplate.js"></script>
+    <script id="signin-template" type="text/x-handlebars-template">
+        {{> signin}}
+    </script>
+    
+    <!-- Estate template -->
+    <script id="estate-template" type="text/x-handlebars-template">
+        <!-- Contact Info -->
+        <div class="contact-cont estate-box">
+            <div class="contact-details">
+                {{#if requesterImgUrl}}
+                <div class="contact-dp img-cont" style="background-image: url({{requesterImgUrl}});"></div>
+                {{else}}
+                <div class="contact-dp img-cont" style="background-image: url(assets/images/icons/user.png);"></div>
+                {{/if}}
+                <div>
+                    <div class="estate-date">posted on {{postedDate}} by
+<span style="float: right;margin-right: -244px;"><a href="https://api.whatsapp.com/send?text=https://zilahouse.com/r/{{estateId}}">
+ <img src="assets/images/icons/whatsapp.jpg" style="width:30px;height:30px;">
+</a></span>
+
+</div>
+                    <div class="estate-author">{{requesterName}} <small>({{requesterUserType}})</small></div>
+                </div>
+            </div>
+            <div class="ctas-cont">
+                <a class="cta-filled cta-filled-sm estate-call view-contact" data-id="{{estateId}}">View Contact</a>
+            </div>
+        </div>
+
+        <!-- Pictures -->
+        <div class="estate-pictures-cont">
+            <div class="estate-pictures swiper-container swiper5" data-id="{{estateId}}">
+                <div class="swiper-wrapper">
+                    {{#each estatePictures}}
+                    <div class="swiper-slide estate-picture img-cont" style="background-image: url(https://zilahouse.com{{picturePath}})">
+                    </div>
+                    {{/each}}
+                </div>
+
+                <div class="swiper-pagination swiper-pagination5"></div>
+
+                <div class="swiper-button-next estate-nav next-estate swiper-button-white"></div>
+                <div class="swiper-button-prev estate-nav prev-estate swiper-button-white"></div>
+            </div>
+        </div>
+
+        <!-- Estate name and description -->
+        <div class="estate-identifiers">
+            <div class="estate-name-price">
+                <div class="estate-name">
+                    {{estateTitle}}
+                </div>
+            </div>
+        </div>
+
+        <!-- Estate Features -->
+        <div class="estate-features estate-box">
+            {{#each mainFeatures}}
+            <div class="estate-feature">
+                <div class="ef-name">{{@key}}</div>
+                <div class="ef-value">{{this}}</div>
+            </div>
+            {{/each}}
+            {{#each allFeatures}}
+            <div class="estate-feature">
+                <div class="ef-name">{{@key}}</div>
+                <div class="ef-value">{{this}}</div>
+            </div>
+            {{/each}}
+        </div>
+
+        <!-- Estate Charges -->
+        <div class="estate-charges estate-box">
+            {{#each charges}}
+            <div class="estate-charge">
+                <div class="ec-name">{{@key}}</div>
+                <div class="ec-value">{{this}}</div>
+            </div>
+            {{/each}}
+        </div>
+
+        <!-- Estate Address -->
+        <div class="estate-address estate-box">
+            <span class="loc-icon">
+                <ion-icon name="location-outline"></ion-icon>
+            </span>
+            <address>
+                {{#if localityPlace}}
+                    {{localityPlace}}, 
+                {{/if}}
+                {{#if locality}}
+                    {{locality}}<br>
+                {{/if}}
+                {{#if city}}
+                    {{city}}, 
+                {{/if}}
+                {{#if state}}
+                    {{state}}<br>
+                {{/if}}
+                {{country}}
+            </address>
+        </div>
+
+        <div class="estate-desc estate-box pb-0">
+            <h6 style="font-weight: 600;">MORE DETAILS</h6>
+            <pre>{{estateDescription}}</pre>
+        </div>
+
+        <!-- Estate Video -->
+        {{#if youtubeUrl}}
+        <div class="estate-video estate-box p-0">
+            <iframe src="{{youtubeUrl}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        {{else}}
+        {{/if}}
+    </script>
+
+    <!-- property template -->
+    <script src="assets/js/templates/propertyTemplate.js"></script>
+    <script id="property-template" type="text/x-handlebars-template">
+        {{> property}}
+    </script>
+
+    <!-- full gallery template -->
+    <script src="assets/js/templates/fullGalleryTemplate.js"></script>
+    <script id="full-gallery-template" type="text/x-handlebars-template">
+        {{> gallery}}
+    </script>
+
+    <!-- Comm Ads template -->
+    <script src="assets/js/templates/commAdTemplate.js"></script>
+    <script id="comm-ad-template" type="text/x-handlebars-template">
+        {{> commAd}}
+    </script>
+
+    <!-- Footer template -->
+    <script src="assets/js/templates/footerTemplate.js"></script>
+    <script id="footer-template" type="text/x-handlebars-template">
+        {{> footer}}
+    </script>
+    
+    <!-- Scripts -->
+    <script src="assets/js/vendor/jquery.min.js"></script>
+    <script src="assets/js/vendor/popper.min.js"></script>
+    <script src="assets/js/vendor/bootstrap.min.js"></script>
+    <script src="assets/js/vendor/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+</body>
+</html>

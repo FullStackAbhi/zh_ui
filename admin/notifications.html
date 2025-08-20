@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVDLT85L8B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZVDLT85L8B');
+</script>
+    <script>
+        if(localStorage.getItem("loggedInUser") === null && sessionStorage.getItem("loggedInUser") === null) {
+            sessionStorage.removeItem("loggedInUser");
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "/";
+        } else {
+            let userData = null;
+            if (sessionStorage.getItem("loggedInUser") !== null) {
+                userData = JSON.parse(sessionStorage.getItem("loggedInUser"));
+            } else {
+                userData = JSON.parse(localStorage.getItem("loggedInUser"));
+            }
+
+            if(!userData.user.token) {
+                sessionStorage.removeItem("loggedInUser");
+                localStorage.removeItem("loggedInUser");
+                window.location.href = "/";
+            }
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Notifications</title>
+    
+    <!-- ogp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Zilahouse">
+    <meta property="og:description" content="Zilahouse provides a common platform for property buyers & sellers to locate properties of interest in India." />
+    <meta property="og:site_name" content="ZILAHOUSE" />
+    <meta property="og:url" content="https://zilahouse.com" />
+    <meta property="og:image" content="https://zilahouse.com/assets/images/logos/zilahouseOGP.png" />
+
+    <!--Favicon-->
+    <link rel="icon" href="/assets/images/favicon.png" type="image/x-icon">
+
+    <!-- Google Analytics -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1175006767696756" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../assets/css/animate.min.css">
+
+    <link rel="stylesheet" href="../assets/css/mainStyle.css">
+    <link rel="stylesheet" href="../assets/css/headerStyle.css">
+    <link rel="stylesheet" href="../assets/css/managePropertiesStyle.css">
+    <link rel="stylesheet" href="../assets/css/notificationsStyle.css">
+    <link rel="stylesheet" href="../assets/css/footerStyle.css">
+
+    <!-- Include Handlebars -->
+    <script src="../assets/js/vendor/handlebars.js"></script>
+
+    <script src="../assets/js/main.js" type="module"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header-content" class="container-fluid navbar navbar-expand-lg">
+    </header> 
+
+    <!-- Manage Properties -->
+    <div class="container-fluid manage">
+        <div id="notifications-wrapper" class="container">
+            <!-- From templates -->
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer id="footer-content" class="footer container-fluid">
+        <!-- From templates -->
+    </footer>
+
+    <!-- Templates -->
+    <!-- Header template -->
+    <script src="../assets/js/templates/headerTemplate.js"></script>
+    <script id="header-template" type="text/x-handlebars-template">
+        {{> header}}
+    </script>
+
+    <!-- Notification template -->
+    <script id="notification-template" type="text/x-handlebars-template">
+        <div class="headline-cont">
+            <h3 class="headline">All Notifications</h3>
+        </div>
+        <div class="notifications-cont">
+            {{#each notification}}
+            <div class="notification">
+                <div class="notif-text">
+                    {{visitorName}} <a href="tel:{{visitorMobile}}" class="text-primary" style="text-decoration: underline;">{{visitorMobile}}</a> viewed your contact for <a href="{{estateUrl}}" class="text-primary" style="text-decoration: underline;">this property.</a>
+                </div>
+                <div class="notif-date">
+                    {{createdDate}}
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </script>
+
+    <!-- Footer template -->
+    <script src="../assets/js/templates/footerTemplate.js"></script>
+    <script id="footer-template" type="text/x-handlebars-template">
+        {{> footer}}
+    </script>
+    
+    <!-- Scripts -->
+    <script src="../assets/js/vendor/jquery.min.js"></script>
+    <script src="../assets/js/vendor/popper.min.js"></script>
+    <script src="../assets/js/vendor/bootstrap.min.js"></script>
+    <script src="../assets/js/vendor/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="https://kit.fontawesome.com/87ac74576e.js" crossorigin="anonymous"></script>
+</body>
+</html>

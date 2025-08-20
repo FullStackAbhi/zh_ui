@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVDLT85L8B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZVDLT85L8B');
+</script>
+
+    <script>
+        if(localStorage.getItem("loggedInUser") === null && sessionStorage.getItem("loggedInUser") === null) {
+            sessionStorage.removeItem("loggedInUser");
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "/";
+        } else {
+            let userData = null;
+            if (sessionStorage.getItem("loggedInUser") !== null) {
+                userData = JSON.parse(sessionStorage.getItem("loggedInUser"));
+            } else {
+                userData = JSON.parse(localStorage.getItem("loggedInUser"));
+            }
+
+            if(!userData.user.token) {
+                sessionStorage.removeItem("loggedInUser");
+                localStorage.removeItem("loggedInUser");
+                window.location.href = "/";
+            }
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard</title>
+    
+    <!-- ogp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Zilahouse">
+    <meta property="og:description" content="Zilahouse provides a common platform for property buyers & sellers to locate properties of interest in India." />
+    <meta property="og:site_name" content="ZILAHOUSE" />
+    <meta property="og:url" content="https://zilahouse.com" />
+    <meta property="og:image" content="https://zilahouse.com/assets/images/logos/zilahouseOGP.png" />
+
+    <!--Favicon-->
+    <link rel="icon" href="/assets/images/favicon.png" type="image/x-icon">
+
+    <!-- Google Analytics -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1175006767696756" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../assets/css/animate.min.css">
+    
+    <link rel="stylesheet" href="../assets/css/mainStyle.css">
+    <link rel="stylesheet" href="../assets/css/headerStyle.css">
+    <link rel="stylesheet" href="../assets/css/adminStyle.css">
+    <link rel="stylesheet" href="../assets/css/propertyStyle.css">
+    <link rel="stylesheet" href="../assets/css/footerStyle.css">
+
+    <!-- Include Handlebars -->
+    <script src="../assets/js/vendor/handlebars.js"></script>
+
+    <script src="../assets/js/main.js" type="module"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header-content" class="container-fluid navbar navbar-expand-lg">
+    </header> 
+
+    <!-- Dashboard -->
+    <div id="dashboard-cont" class="container-fluid dashboard">
+        <!-- From templates -->
+        <div class="container d-flex py-5 align-items-center justify-content-center">
+            <div class="spinner-border" style="opacity: 0.4; border-width: 2px;"></div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer id="footer-content" class="footer container-fluid">
+        <!-- From templates -->
+    </footer>
+
+
+    <!-- Templates -->
+    <!-- Header template -->
+    <script src="../assets/js/templates/headerTemplate.js"></script>
+    <script id="header-template" type="text/x-handlebars-template">
+        {{> header}}
+    </script>
+
+    <!-- Dashboard template -->
+    <script id="dashboard-template" type="text/x-handlebars-template">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="dashboard-box">
+                        <div class="d-flex headline-cont mb-0 align-items-center" style="margin-bottom: 0 !important;">
+                            <h3 class="headline welcome-text" style="margin-bottom: 0 !important;">Hi, {{user.displayName}}</h3>
+                            <a href="my-profile.html" class="cta-filled cta-filled-sm m-0">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="dashboard-box">
+                        <div class="headline-cont">
+                            <h3 class="headline">My Properties</h3>
+                            <span class="headline">{{myAllPropertiesCount}}</span>
+                        </div>
+                        <hr>
+                        <div class="d-body">
+                            <div class="d-body-item-cont text-success">
+                                <span>Active</span>
+                                <span>{{myActivePropertiesCount}}</span>
+                            </div>
+                            <div class="d-body-item-cont text-danger">
+                                <span>Inactive</span>
+                                <span>{{myInactivePropertiesCount}}</span>
+                            </div>
+                            <hr>
+                            <div class="d-body-item-cont text-info">
+                                <span>Under Review</span>
+                                <span>{{myUnderReviewPropertiesCount}}</span>
+                            </div>
+                            <div class="d-body-item-cont text-success">
+                                <span>Reviewed</span>
+                                <span>{{myReviewedPropertiesCount}}</span>
+                            </div>
+                            <div class="d-body-item-cont text-danger">
+                                <span>Rejected</span>
+                                <span>{{myRejectedPropertiesCount}}</span>
+                            </div>
+                            <div class="d-body-item-cont text-secondary">
+                                <span>Sold Out</span>
+                                <span>{{mySoldOutPropertiesCount}}</span>
+                            </div>
+                        </div>
+                        <a href="my-properties.html" class="cta-filled cta-filled-sm mt-2">View All</a>
+                    </div>
+                </div>
+                {{#ifEquals user.userType "Admin"}}
+                <div class="col-md-6">
+                    <div class="dashboard-box">
+                        <div class="headline-cont">
+                            <h3 class="headline">All Properties</h3>
+                            <span class="headline">{{allPropertiesCount}}</span>
+                        </div>
+                        <hr>
+                        <div class="d-body">
+                            <div class="d-body-item-cont text-success">
+                                <span>Active</span>
+                                <span>{{allActivePropertiesCount}}</span>
+                            </div>
+                            <div class="d-body-item-cont text-danger">
+                                <span>Inactive</span>
+                                <span>{{allInactivePropertiesCount}}</span>
+                            </div>
+                            <hr>
+                            <div class="d-body-item-cont text-info">
+                                <span>Under Review</span>
+                                <span>{{allUnderReviewPropertiesCount}}</span>
+                            </div>
+                            <div class="d-body-item-cont text-success">
+                                <span>Reviewed</span>
+                                <span>{{allReviewedPropertiesCount}}</span>
+                            </div>
+                            <div class="d-body-item-cont text-danger">
+                                <span>Rejected</span>
+                                <span>{{allRejectedPropertiesCount}}</span>
+                            </div>
+                            <div class="d-body-item-cont text-secondary">
+                                <span>Sold Out</span>
+                                <span>{{allSoldOutPropertiesCount}}</span>
+                            </div>
+                        </div>
+                        <a href="manage-properties.html" class="cta-filled cta-filled-sm mt-2">View All</a>
+                    </div>
+                </div>
+                {{/ifEquals}}
+                <div class="col-md-6">
+                    <div class="dashboard-box">
+                        <div class="headline-cont">
+                            <h3 class="headline">My Wishlists</h3>
+                            <span class="headline">{{myOptedWishlistsCount}}</span>
+                        </div>
+                        <a href="my-wishlists.html" class="cta-filled cta-filled-sm mt-1">View All</a>
+                    </div>
+                </div>
+                {{#ifEquals user.userType "Admin"}}
+                <div class="col-md-6">
+                    <div class="dashboard-box">
+                        <div class="headline-cont">
+                            <h3 class="headline">All Wishlists</h3>
+                            <span class="headline">{{allWishlistsCount}}</span>
+                        </div>
+                        <a href="manage-wishlists.html" class="cta-filled cta-filled-sm mt-1">View All</a>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="dashboard-box">
+                        <div class="headline-cont">
+                            <h3 class="headline">All Users</h3>
+                            <span class="headline">{{allUsersCount}}</span>
+                        </div>
+                        <hr>
+                        <div class="d-body">
+                            <div class="d-body-item-cont text-success">
+                                <span>Active</span>
+                                <span>{{allActiveUsersCount}}</span>
+                            </div>
+                            <div class="d-body-item-cont text-danger">
+                                <span>Inactive</span>
+                                <span>{{allInactiveUsersCount}}</span>
+                            </div>
+                            <hr>
+                            <div class="d-body-item-cont text-info">
+                                <span>Individual Users</span>
+                                <span>{{allIndividualUsersCount}}</span>
+                            </div>
+                            <div class="d-body-item-cont text-info">
+                                <span>Owners</span>
+                                <span>{{allOwnerUsersCount}}</span>
+                            </div>
+                            <div class="d-body-item-cont text-info">
+                                <span>Agents</span>
+                                <span>{{allAgentUsersCount}}</span>
+                            </div>
+                            <div class="d-body-item-cont text-success">
+                                <span>Admin Users</span>
+                                <span>{{allAdminUsersCount}}</span>
+                            </div>
+                        </div>
+                        <a href="manage-users.html" class="cta-filled cta-filled-sm mt-2">View All</a>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="dashboard-box">
+                        <div class="headline-cont">
+                            <h3 class="headline">Commercial Ads</h3>
+                            <span class="headline">{{allCommercialAdsCount}}</span>
+                        </div>
+                        <hr>
+                        <div class="d-body">
+                            <div class="d-body-item-cont text-success">
+                                <span>Active</span>
+                                <span>{{allActiveCommercialAdsCount}}</span>
+                            </div>
+                            <div class="d-body-item-cont text-danger">
+                                <span>Inactive</span>
+                                <span>{{allInactiveCommercialAdsCount}}</span>
+                            </div>
+                        </div>
+                        <a href="manage-comm-ads.html" class="cta-filled cta-filled-sm mt-1">View All</a>
+                    </div>
+                </div>
+
+				<div class="col-md-12">
+                    <div class="dashboard-box">
+                        <div class="headline-cont">
+                            <h3 class="headline">Leads</h3>
+                            <span class="headline">{{allLeads}}</span>
+                        </div>
+                        <hr>
+                        <div class="d-body">
+                            <div class="d-body-item-cont text-success">
+                                <span>Active</span>
+                                <span>{{allActiveLeads}}</span>
+                            </div>
+                            <div class="d-body-item-cont text-danger">
+                                <span>Inactive</span>
+                                <span>{{allInactiveLeads}}</span>
+                            </div>
+                        </div>
+                        <a href="manage-leads.html" class="cta-filled cta-filled-sm mt-1">View All</a>
+                    </div>
+                </div>
+                {{/ifEquals}}
+            </div>
+        </div>
+    </script>
+
+    <script>    
+        Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+            return (arg1.toLowerCase() == arg2.toLowerCase()) ? options.fn(this) : options.inverse(this);
+        });
+    </script>
+
+    <!-- Footer template -->
+    <script src="../assets/js/templates/footerTemplate.js"></script>
+    <script id="footer-template" type="text/x-handlebars-template">
+        {{> footer}}
+    </script>
+
+    <script src="../assets/js/vendor/jquery.min.js"></script>
+    <script src="../assets/js/vendor/popper.min.js"></script>
+    <script src="../assets/js/vendor/bootstrap.min.js"></script>
+    <script src="../assets/js/vendor/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+</body>
+</html>

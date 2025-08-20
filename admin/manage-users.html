@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVDLT85L8B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZVDLT85L8B');
+</script>
+    <script>
+        if(localStorage.getItem("loggedInUser") === null && sessionStorage.getItem("loggedInUser") === null) {
+            sessionStorage.removeItem("loggedInUser");
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "/";
+        } else {
+            let userData = null;
+            if (sessionStorage.getItem("loggedInUser") !== null) {
+                userData = JSON.parse(sessionStorage.getItem("loggedInUser"));
+            } else {
+                userData = JSON.parse(localStorage.getItem("loggedInUser"));
+            }
+
+            if(!userData.user.token) {
+                sessionStorage.removeItem("loggedInUser");
+                localStorage.removeItem("loggedInUser");
+                window.location.href = "/";
+            } else {
+                if(userData.user.userType.toLowerCase() != "admin") {
+                    sessionStorage.removeItem("loggedInUser");
+                    localStorage.removeItem("loggedInUser");
+                    window.location.href = "/";
+                }
+            }
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Users</title>
+    
+    <!-- ogp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Zilahouse">
+    <meta property="og:description" content="Zilahouse provides a common platform for property buyers & sellers to locate properties of interest in India." />
+    <meta property="og:site_name" content="ZILAHOUSE" />
+    <meta property="og:url" content="https://zilahouse.com" />
+    <meta property="og:image" content="https://zilahouse.com/assets/images/logos/zilahouseOGP.png" />
+
+    <!--Favicon-->
+    <link rel="icon" href="/assets/images/favicon.png" type="image/x-icon">
+
+    <!-- Google Analytics -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1175006767696756" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../assets/css/animate.min.css">
+    
+    <link rel="stylesheet" href="../assets/css/mainStyle.css">
+    <link rel="stylesheet" href="../assets/css/headerStyle.css">
+    <link rel="stylesheet" href="../assets/css/signInSignUpStyle.css">
+    <link rel="stylesheet" href="../assets/css/managePropertiesStyle.css">
+    <link rel="stylesheet" href="../assets/css/manageUsersStyle.css">
+    <link rel="stylesheet" href="../assets/css/paginationStyle.css">
+    <link rel="stylesheet" href="../assets/css/footerStyle.css">
+
+    <!-- Include Handlebars -->
+    <script src="../assets/js/vendor/handlebars.js"></script>
+
+    <script src="../assets/js/main.js" type="module"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header-content" class="container-fluid navbar navbar-expand-lg">
+    </header> 
+
+    <!-- Manage Users -->
+    <div class="container-fluid manage-users manage">
+        <div class="container">
+            <div class="headline-cont">
+                <h3 class="headline">All Users</h3>
+            </div>
+            <div class="fns">
+                <!-- Smart Search -->
+                <div class="smart-search-cont">
+                    <input type="text" class="form-control" placeholder="Search users by anything..." id="smart-user-search" autocomplete="off" autofocus>
+                </div>
+
+                <!-- Create New User -->
+                <button class="cta-filled create-new-user-btn">Create New User</button>
+            </div>
+
+            <!-- Users list -->
+            <div id="users-table-cont" class="table-cont">
+                <div class="table-responsive">
+                    <table class="users-table table-bordered table">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%">Id</th>
+                                <th style="width: 35%">Name</th>
+                                <th style="width: 15%">Mobile</th>
+                                <th style="width: 15%">Type</th>
+                                <th style="width: 15%">Status</th>
+                                <th style="width: 15%">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-list-cont">
+                            <!-- From templates -->
+                        </tbody>
+                    </table>
+                    <div class="loader-cont"></div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div id="pagination-cont" class="pagination-cont">
+                <!-- From templates -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer id="footer-content" class="footer container-fluid">
+        <!-- From templates -->
+    </footer>
+
+    <!-- Direct Registration Form Cont -->
+    <div id="direct-signup-cont" class="container-fluid direct-signup-box bottom-box">
+        <!-- from templates -->
+    </div>
+
+
+    <!-- Templates -->
+    <!-- Header template -->
+    <script src="../assets/js/templates/headerTemplate.js"></script>
+    <script id="header-template" type="text/x-handlebars-template">
+        {{> header}}
+    </script>
+
+    <!-- Pagination template -->
+    <script src="../assets/js/templates/paginationTemplate.js"></script>
+    <script id="pagination-template" type="text/x-handlebars-template">
+        {{> pagination}}
+    </script>
+
+    <!-- User template -->
+    <script id="users-list-template" type="text/x-handlebars-template">
+        {{#each user}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{displayName}}</td>
+            <td>{{mobile}}</td>
+            <td>{{userType}}</td>
+            {{#if active}}
+            {{#ifEquals active "Active"}}
+            <td id="td-status{{id}}" class="table-success">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input status-field" id="status{{id}}" checked data-id="{{id}}">
+                    <label class="custom-control-label status-label" for="status{{id}}">Active</label>
+                </div>
+            </td>
+            {{/ifEquals}}
+            {{#ifEquals active "Inactive"}}
+            <td id="td-status{{id}}" class="table-danger">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input status-field" id="status{{id}}" data-id="{{id}}">
+                    <label class="custom-control-label status-label" for="status{{id}}">Inactive</label>
+                </div>
+            </td>
+            {{/ifEquals}}
+            {{else}}
+            <td>Null</td>
+            {{/if}}
+            {{#if welcomeUrl includeZero=true}}
+            <td>
+                <span id="copy-url{{id}}" data-id="{{id}}" class="cta-filled cta-filled-sm bg-primary copy-url" data-clipboard-text="{{welcomeUrl}}">Copy Url</span>
+            </td>
+            {{/if}}
+        </tr>
+        {{/each}}
+    </script>
+
+    <!-- Direct Signup template -->
+    <script id="direct-signup-template" type="text/x-handlebars-template">
+        <div class="container form-cont direct-signup-form-cont">
+            <div class="headline-cont">
+                <h2 class="headline">Create New User</h2>
+                <ion-icon class="close-direct-signup close-icon" name="close-outline"></ion-icon>
+            </div>
+            <!-- Form msg -->
+            <div id="direct-signup-form-msg" class="form-msg disappear">
+                <div class="alert">
+                    <span></span>
+                </div>
+            </div>
+
+            <form method="POST" class="form direct-signup-form" onsubmit="event.preventDefault();">
+                <div class="direct-signup-fields-cont">
+                    <!-- User-type -->
+                    <div class="form-group form-field-cont user-type flex-column align-items-lg-start">
+                        <label class="mb-1 user-type-label form-field-name "><span class="text-danger">*</span>User Type</label>
+                        <div class="form-check-inline-cont">
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="user-type" id="individual" value="Individual" required><label for="individual">Individual</label>
+                                </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="user-type" id="owner" value="Owner"><label for="owner">Owner</label>
+                                </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="user-type" id="agent" value="Agent"><label for="agent">Agent</label>
+                                </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="user-type" id="Admin" value="Admin"><label for="Admin">Admin</label>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Name -->
+                    <div class="form-group">
+                        <input type="text" name="name" id="name" class="form-control" placeholder="*Name" required>
+                    </div>
+                    <!-- Mobile Number -->
+                    <div class="form-group">
+                        <input type="tel" inputmode="numeric" name="mobile" id="signup-mobile" maxlength="10" minlength="10" class="form-control" placeholder="*Mobile number" required>
+                    </div>
+                    <!-- Email -->
+                    <div class="form-group">
+                        <input type="email" inputmode="email" name="email" id="email" class="form-control" placeholder="*Email address" required>
+                    </div>
+                    <!-- Password -->
+                    <div class="form-group">
+                        <input type="password" name="signup-pwd" id="signup-pwd" class="form-control" placeholder="*Enter Password" required>
+                    </div>
+                    <!-- Confirm Password -->
+                    <div class="form-group">
+                        <input type="password" name="confirm-pwd" id="confirm-pwd" class="form-control" placeholder="*Confirm Password" required>
+                    </div>
+                </div>
+                <!-- Direct Registration -->
+                <button type="submit" class="cta-filled w-100 direct-signup-submit">Create New User</button>
+            </form>
+        </div>
+    </script>
+
+    <script>    
+        Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+            return (arg1.toLowerCase() == arg2.toLowerCase()) ? options.fn(this) : options.inverse(this);
+        });
+    </script>
+
+    <!-- Pagination template -->
+    <script src="../assets/js/templates/paginationTemplate.js"></script>
+    <script id="pagination-template" type="text/x-handlebars-template">
+        {{> pagination}}
+    </script>
+
+    <!-- Footer template -->
+    <script src="../assets/js/templates/footerTemplate.js"></script>
+    <script id="footer-template" type="text/x-handlebars-template">
+        {{> footer}}
+    </script>
+
+    <script src="../assets/js/vendor/jquery.min.js"></script>
+    <script src="../assets/js/vendor/popper.min.js"></script>
+    <script src="../assets/js/vendor/bootstrap.min.js"></script>
+    <script src="../assets/js/vendor/swiper-bundle.min.js"></script>
+    <script src="../assets/js/vendor/clipboard.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+</body>
+</html>

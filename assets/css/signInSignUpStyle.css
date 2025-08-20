@@ -1,0 +1,191 @@
+.form-cont {
+    width: 32%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 24px;
+    overflow: auto;
+    border-radius: 8px;
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.1);
+    background-color: var(--primary-color);
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+.form-cont .headline-cont {
+    margin-bottom: 16px;
+}
+.form-cont .headline {
+    font-size: 28px;
+    width: 100%;
+}
+.form-msg {
+    font-weight: 500;
+    font-size: 14px;
+    margin: 0;
+}
+.form {
+    width: 100%;
+}
+.form input {
+    font-size: 14px;
+    font-weight: 600;
+}
+.form input:placeholder-shown {
+    font-size: 14px;
+    font-weight: 500;
+}
+.or {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1px;
+    margin: 28px 0;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: var(--secondary-color);
+}
+.or span {
+    padding: 0 6px;
+    background-color: var(--primary-color);
+}
+.no-account {
+    margin-top: 16px;
+}
+.no-account span {
+    cursor: pointer;
+    text-decoration: underline;
+    color: var(--accent-color);
+}
+
+/* Signin Via Otp */
+.otp-options-cont, .signup-otp-options-cont {
+    display: flex;
+    margin-top: 8px;
+    font-size: 12px;
+    justify-content: flex-end;
+    align-items: center;
+}
+.resend-otp-btn, .signup-resend-otp-btn {
+    cursor: pointer;
+}
+.resend-otp-btn.deactivated, .signup-resend-otp-btn.deactivated {
+    opacity: 0.3;
+    cursor: default;
+}
+.otp-timer, .signup-otp-timer {
+    margin-left: 6px;
+}
+
+/* Signup */
+.user-type {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 0;
+    border-radius: 4px;
+}
+.form-check-inline-cont {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow: auto;
+    padding: 1px 0;
+}
+.form-check-inline-cont::-webkit-scrollbar {
+    display: none;
+}
+.form-check-inline-cont input {
+    margin-right: 6px;
+}
+.form-check-inline {
+    margin: 3px 6px 3px 0;
+}
+.form-check-label label {
+    padding: 4px 10px;
+    margin: 0;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition-duration: 0.1s;
+    border: 1px solid var(--accent-color);
+    background-color: var(--grey-bg);
+    user-select: none;
+    cursor: pointer;
+}
+.form-check-input[type="radio"] {
+    width: 0;
+    /* display: none; */
+    opacity: 0;
+    margin-right: 0 !important;
+}
+.form-check-label input:hover + label, .form-check-label input:focus + label {
+    color: var(--primary-color);
+    background-color: var(--accent-light);
+}
+.form-check-label input:checked + label {
+    color: var(--primary-color);
+    border: 1px solid var(--accent-color);
+    background-color: var(--accent-color);
+}
+.form-check-label input:disabled + label, .form-control:disabled {
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    background-color: var(--grey-bg);
+    opacity: 0.3;
+    cursor: default;
+}
+
+@media screen and (max-width: 1024px) {
+    .form-cont {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .pfa-cont {
+        padding: 0;
+    }
+    .form-cont {
+        width: 50%;
+    }
+    .form-cont .headline {
+        font-size: 24px;
+    }
+    .form-field-cont {
+        display: flex;
+        align-items: flex-start !important;
+        justify-content: flex-start;
+        flex-direction: column;
+    }
+    .form-field-name {
+        margin-bottom: 8px !important;
+    }
+    .form-check-inline-cont {
+        max-width: 100%;
+        flex-wrap: wrap;
+    }
+    .form-check-inline {
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .form-cont {
+        width: 93%;
+        /* background-color: transparent; */
+    }
+    .form-cont .headline {
+        font-size: 22px;
+    }
+    .form-field-cont {
+        margin-bottom: 14px !important;
+    }
+    .form-field-name {
+        margin-bottom: 4px !important;
+    }
+    .form-check-label label {
+        font-size: 14px;
+        letter-spacing: 0.4px;
+    }
+}
